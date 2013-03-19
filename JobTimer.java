@@ -15,5 +15,6 @@ public class JobTimer extends Thread {
     } catch (InterruptedException e) {   
       e.printStackTrace();
     }
+    myJob.pleaseStop();
   }
 }

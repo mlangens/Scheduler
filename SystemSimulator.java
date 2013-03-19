@@ -30,7 +30,6 @@ class SystemSimulator extends Thread {
 //  }
   
   public void noMoreJobsToSubmit() {
-    // TODO Auto-generated method stub
     
   }
 //  myScheduler.printGannt();
@@ -39,5 +38,7 @@ class SystemSimulator extends Thread {
     // TODO Auto-generated method stub
     
   }
+
+
 
 }
