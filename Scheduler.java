@@ -19,6 +19,7 @@ public class Scheduler {
   }
   
   void makeRun() {
+    System.out.println("makerun");
     if(!readyQ.isEmpty()) {
       currentlyRunningJob = (Job) readyQ.remove(0);
       currentlyRunningJob.start();

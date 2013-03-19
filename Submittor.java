@@ -21,7 +21,8 @@ class Submittor extends Thread {
         } catch (InterruptedException e) {
         }
       String name = "Max";
-      s.AddNewProcess(progenitor.createJob((String) description, s, name));      
+      s.AddNewProcess(progenitor.createJob((String) description, s, name));   
+      System.out.println("this is the desc " + description + " name " + name);
     }
 
     s.noMoreJobsToSubmit();

@@ -4,20 +4,22 @@ public class Job extends Thread {
   String description;
   SystemSimulator s;
   String name;
+  private boolean running;
   
   Job(String description, SystemSimulator s, String name) {
     this.description = description;
     this.s = s;
-    this.name = name;
+    this.name = name;    
   }
   
   private SystemSimulator myOS;
 
   synchronized void pleaseStop() {
+    running = false;
   }
     
   synchronized protected boolean shouldRun() {
-    return false;
+    return running;
   }
 
   protected int getBurstTime() {
@@ -30,6 +32,8 @@ public class Job extends Thread {
 //  }
 
   public void run() {
+    running = true;
+    System.out.println("beginning of run " + name + " "+ description);
     JobTimer timer = new JobTimer(this, getBurstTime());
     timer.start();
     while(shouldRun()) {
@@ -39,11 +43,12 @@ public class Job extends Thread {
         e.printStackTrace();
       }
     }
+    System.out.println("its done mane");
     Exit();
   }
 
   void Exit() {
-    //myOS.
+    myOS.Exit();
   }
 
 }
