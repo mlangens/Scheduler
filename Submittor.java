@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 class Submittor extends Thread {
-  private SystemSimulator mySystem;
-  private JobCreator myJobCreator;
   private ArrayList jobDescriptions;
   private SystemSimulator s;
   private JobCreator progenitor;
@@ -23,10 +21,10 @@ class Submittor extends Thread {
         } catch (InterruptedException e) {
         }
       String name = "Max";
-      mySystem.AddNewProcess(progenitor.createJob((String) description, mySystem, name));      
+      s.AddNewProcess(progenitor.createJob((String) description, s, name));      
     }
 
-    mySystem.noMoreJobsToSubmit();
+    s.noMoreJobsToSubmit();
   }
 }
 

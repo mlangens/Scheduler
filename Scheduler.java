@@ -3,11 +3,15 @@ package Scheduler;
 import java.util.ArrayList;
 
 public class Scheduler {
-  private ArrayList readyQ;
-  private Job currentlyRunningJob;
+  private ArrayList readyQ = new ArrayList();
+  private Job currentlyRunningJob = null;
   
   public Scheduler() {
     readyQ = new ArrayList();
+  }
+  
+  public boolean isReadyQEmpty() {
+    return readyQ.isEmpty();
   }
   
   void add(Job j) {    
@@ -15,7 +19,10 @@ public class Scheduler {
   }
   
   void makeRun() {
-    
+    if(!readyQ.isEmpty()) {
+      currentlyRunningJob = (Job) readyQ.remove(0);
+      currentlyRunningJob.start();
+    }
   }
   
   public void printGannt() {

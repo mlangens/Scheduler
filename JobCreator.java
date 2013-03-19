@@ -8,7 +8,6 @@ class JobCreator {
   }
 
   public Job createJob(String description, SystemSimulator s, String name) {
-    // Return a Job or subtype of Job for eventual execution.
     return new Job(description, s, name);
   }
 
