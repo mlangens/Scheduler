@@ -10,9 +10,7 @@ public class Job extends Thread {
     this.description = description;
     this.s = s;
     this.name = name;    
-  }
-  
-  private SystemSimulator myOS;
+  }  
 
   synchronized void pleaseStop() {
     running = false;
@@ -48,7 +46,7 @@ public class Job extends Thread {
   }
 
   void Exit() {
-    myOS.Exit();
+    s.Exit();
   }
 
 }

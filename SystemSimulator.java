@@ -10,7 +10,10 @@ class SystemSimulator extends Thread {
   public void run() {
     while(!myScheduler.isReadyQEmpty() || !noMoreJobsToSubmit) {
       try {
-        wait(10);
+        sleep(10);
+        if(!myScheduler.jobRunning()) {
+          myScheduler.makeRun();
+        }
       } catch (InterruptedException e) {
         System.out.println("run in system sim");
         myScheduler.makeRun();        
@@ -30,7 +33,7 @@ class SystemSimulator extends Thread {
   }
   
   void Exit() {
-    Thread currentThread = Thread.currentThread(); 
+//    Thread currentThread = Thread.currentThread(); 
   }
 
 }

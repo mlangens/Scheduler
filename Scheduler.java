@@ -16,6 +16,13 @@ public class Scheduler {
   
   void add(Job j) {    
     readyQ.add(j);
+    if(jobRunning()) {
+      makeRun();
+    }
+  }
+
+  public boolean jobRunning() {
+    return currentlyRunningJob == null;
   }
   
   void makeRun() {
@@ -24,6 +31,8 @@ public class Scheduler {
       currentlyRunningJob = (Job) readyQ.remove(0);
       currentlyRunningJob.start();
     }
+    else
+      currentlyRunningJob = null;
   }
   
   public void printGannt() {
