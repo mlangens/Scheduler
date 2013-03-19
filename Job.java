@@ -2,16 +2,20 @@ package Scheduler;
 
 public class Job extends Thread {
   String description;
+  SystemSimulator s;
+  String name;
   
   Job(String description, SystemSimulator s, String name) {
     this.description = description;
+    this.s = s;
+    this.name = name;
   }
   
   private SystemSimulator myOS;
 
   synchronized void pleaseStop() {
   }
-
+    
   synchronized protected boolean shouldRun() {
     return false;
   }
@@ -19,6 +23,11 @@ public class Job extends Thread {
   protected int getBurstTime() {
     return DescriptionTokenizer.getBurst(description);
   }
+
+//  @Override
+//  public String getName() {
+//    return name;
+//  }
 
   public void run() {
     JobTimer timer = new JobTimer(this, getBurstTime());
