@@ -5,17 +5,17 @@ public class Job extends Thread {
   SystemSimulator s;
   String name;
   private boolean running;
-  
+
   Job(String description, SystemSimulator s, String name) {
     this.description = description;
     this.s = s;
-    this.name = name;    
-  }  
+    this.name = name;
+  }
 
   synchronized void pleaseStop() {
     running = false;
   }
-    
+
   synchronized protected boolean shouldRun() {
     return running;
   }
@@ -24,17 +24,17 @@ public class Job extends Thread {
     return DescriptionTokenizer.getBurst(description);
   }
 
-//  @Override
-//  public String getName() {
-//    return name;
-//  }
+  // @Override
+  // public String getName() {
+  // return name;
+  // }
 
   public void run() {
     running = true;
-    System.out.println("beginning of run " + name + " "+ description);
+    System.out.println("beginning of run " + name + " " + description);
     JobTimer timer = new JobTimer(this, getBurstTime());
     timer.start();
-    while(shouldRun()) {
+    while (shouldRun()) {
       try {
         Thread.sleep(10);
       } catch (InterruptedException e) {

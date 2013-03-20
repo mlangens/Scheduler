@@ -8,19 +8,19 @@ class SystemSimulator extends Thread {
   }
 
   public void run() {
-    while(!myScheduler.isReadyQEmpty() || !noMoreJobsToSubmit) {
+    while (!myScheduler.isReadyQEmpty() || !noMoreJobsToSubmit) {
       try {
         sleep(10);
-        if(!myScheduler.jobRunning()) {
+        if (!myScheduler.jobRunning()) {
           myScheduler.makeRun();
         }
       } catch (InterruptedException e) {
         System.out.println("run in system sim");
-        myScheduler.makeRun();        
+        myScheduler.makeRun();
       }
     }
   }
-  
+
   public void noMoreJobsToSubmit() {
     noMoreJobsToSubmit = true;
   }
@@ -31,9 +31,9 @@ class SystemSimulator extends Thread {
     System.out.println("add new process");
     myScheduler.add(createJob);
   }
-  
+
   void Exit() {
-//    Thread currentThread = Thread.currentThread(); 
+    // Thread currentThread = Thread.currentThread();
   }
 
 }

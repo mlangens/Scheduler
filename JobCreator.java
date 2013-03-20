@@ -10,5 +10,4 @@ class JobCreator {
   public Job createJob(String description, SystemSimulator s, String name) {
     return new Job(description, s, name);
   }
-
 }
