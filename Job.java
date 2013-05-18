@@ -47,6 +47,7 @@ public class Job extends Thread {
 
   void Exit() {
     s.Exit();
+    s.interrupt();
   }
 
 }
