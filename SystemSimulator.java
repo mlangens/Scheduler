@@ -1,10 +1,13 @@
 package Scheduler;
 
+import java.util.ArrayList;
+
 class SystemSimulator extends Thread {
   private Scheduler myScheduler = new Scheduler();
   private boolean noMoreJobsToSubmit = false;
-  private boolean processRunning = false;
+  private boolean jobCurrentlyRunning = false;
   private long startTime;
+  ArrayList<Job> completedJobList;
 
   public SystemSimulator() {
   }
@@ -17,8 +20,15 @@ class SystemSimulator extends Thread {
       } catch (InterruptedException e) {
         System.out.println("runs in system sim");
         myScheduler.makeRun();
+        jobCurrentlyRunning = true;
       }
     }
+    while(jobCurrentlyRunning) {
+      try {
+        sleep(10);
+      } catch (InterruptedException e){}
+    }
+    myScheduler.printGannt();
   }
 
   public long relativeTime() {
@@ -30,15 +40,15 @@ class SystemSimulator extends Thread {
     noMoreJobsToSubmit = true;
   }
 
-  // myScheduler.printGannt();
-
   void AddNewProcess(Job createJob) {
     System.out.println("add new process");
     myScheduler.add(createJob);
   }
 
   void Exit() {
-    processRunning = false;
+    myScheduler.addCompletedJob((Job) Thread.currentThread());
+    jobCurrentlyRunning = false;
+    System.out.println("Exit Thread " + Thread.currentThread());
   }
 
 }

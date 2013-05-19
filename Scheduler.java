@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Scheduler {
   private ArrayList readyQ = new ArrayList();
+  private ArrayList<Job> completedJobs = new ArrayList<Job>();
 
   public Scheduler() {
     readyQ = new ArrayList();
@@ -26,7 +27,13 @@ public class Scheduler {
     }
   }
 
-  public void printGannt() {
+  void addCompletedJob(Job job) {   
+    completedJobs.add(job);
+  }
 
+  public void printGannt() {
+    for (Job job: completedJobs) {
+      System.out.println("job id  " + job.getBurstTime() + " job name: " + job.getJobName() + " job init: " + job.getInit());
+    }   
   }
 }

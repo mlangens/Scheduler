@@ -23,7 +23,15 @@ public class Job extends Thread {
   protected int getBurstTime() {
     return DescriptionTokenizer.getBurst(description);
   }
-
+  
+  protected String getJobName() {
+    return name;    
+  }
+  
+  protected int getInit() {
+    return DescriptionTokenizer.getInit(description);
+  }
+  
   public void run() {
     running = true;
     System.out.println("beginning of run " + name + " " + description);
