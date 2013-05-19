@@ -32,8 +32,7 @@ class SystemSimulator extends Thread {
   }
 
   public long relativeTime() {
-    long currentTime = System.currentTimeMillis();
-    return currentTime - startTime;
+    return System.currentTimeMillis() - startTime;
   }
 
   public void noMoreJobsToSubmit() {

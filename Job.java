@@ -5,11 +5,20 @@ public class Job extends Thread {
   SystemSimulator s;
   String name;
   private boolean running;
+  private int actualRuntime;
 
   Job(String description, SystemSimulator s, String name) {
     this.description = description;
     this.s = s;
     this.name = name;
+  }
+
+  public int getActualRuntime() {
+    return actualRuntime;
+  }
+
+  public void setActualRuntime(int actualRuntime) {
+    this.actualRuntime = actualRuntime;
   }
 
   synchronized void pleaseStop() {
@@ -23,15 +32,15 @@ public class Job extends Thread {
   protected int getBurstTime() {
     return DescriptionTokenizer.getBurst(description);
   }
-  
+
   protected String getJobName() {
-    return name;    
+    return name;
   }
-  
+
   protected int getInit() {
     return DescriptionTokenizer.getInit(description);
   }
-  
+
   public void run() {
     running = true;
     System.out.println("beginning of run " + name + " " + description);

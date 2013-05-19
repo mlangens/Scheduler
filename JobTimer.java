@@ -10,11 +10,13 @@ public class JobTimer extends Thread {
   }
 
   public void run() {
+    long jobStartTime = System.currentTimeMillis();
     try {
       Thread.sleep(msecs);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
     myJob.pleaseStop();
+    myJob.setActualRuntime((int) (System.currentTimeMillis() - jobStartTime));
   }
 }

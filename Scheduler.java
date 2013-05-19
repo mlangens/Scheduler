@@ -27,13 +27,14 @@ public class Scheduler {
     }
   }
 
-  void addCompletedJob(Job job) {   
+  void addCompletedJob(Job job) {
     completedJobs.add(job);
   }
 
   public void printGannt() {
-    for (Job job: completedJobs) {
-      System.out.println("job id  " + job.getBurstTime() + " job name: " + job.getJobName() + " job init: " + job.getInit());
-    }   
+    for (Job job : completedJobs) {
+      System.out.println("job id  " + job.getActualRuntime() + " job name: " + job.getJobName() + " job init: "
+          + job.getInit());
+    }
   }
 }
