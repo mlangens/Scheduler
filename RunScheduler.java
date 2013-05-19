@@ -16,14 +16,11 @@ public class RunScheduler {
     ArrayList jobs = new ArrayList();
 
     ListManager reader = new ListManager();
-    ArrayList<Integer> readData = reader.readData();
-    String temp = "";
-    for(int i=0; i<readData.size(); i++) {
+    ArrayList<String> readData = reader.readData();
+    for (String string : readData) {
+      System.out.println(string);
+      // jobs.add(string);
     }
-
-    // jobs.add("1 0 300");
-    // jobs.add("2 100 300");
-    // jobs.add("3 300 300");
 
     JobCreator sinecure = new JobCreator(os);
     Submittor sub = new Submittor(jobs, os, sinecure);
@@ -36,26 +33,43 @@ public class RunScheduler {
     // As the driver exits, os has the highest priority, so should get the
     // cpu....
   }
-
 }
 
 class ListManager {
-  //adapted from http://csis.pace.edu/~wolf/cs121/TestFiles2.htm
-  private ArrayList<Integer> dataList = new ArrayList<Integer>();
-  public ArrayList<Integer> readData() {
+  // adapted from http://csis.pace.edu/~wolf/cs121/TestFiles2.htm
+  private ArrayList<String> inputList = new ArrayList<String>();
+
+  public ArrayList<String> readData() {
     try {
       BufferedReader input = new BufferedReader(new InputStreamReader(new FileInputStream("scheduleInput.txt")));
       StreamTokenizer tokens = new StreamTokenizer(input);
       int next = tokens.nextToken();
       while (next != tokens.TT_EOF) {
         double nval = tokens.nval;
-        dataList.add((int) nval);
+        inputList.add(Integer.toString((int) nval));
         next = tokens.nextToken();
       }
       input.close();
     } catch (IOException e) {
     } catch (NumberFormatException e) {
     }
-    return dataList;
+
+    ArrayList<String> jobList = parseJobs();
+    return jobList;
+  }
+
+  private ArrayList<String> parseJobs() {
+    String temp = "";
+    ArrayList<String> jobList = new ArrayList<String>();
+    for (int i = 0; i < inputList.size(); i++) {      
+      if (i % 3 != 0)
+        temp += inputList.get(i) + " ";
+        //System.out.println("I am i%3 here is i: " + i);
+      else
+        temp += inputList.get(i);
+        jobList.add(temp);
+        temp = "";
+    }
+    return jobList;
   }
 }
