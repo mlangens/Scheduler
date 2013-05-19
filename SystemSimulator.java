@@ -23,10 +23,11 @@ class SystemSimulator extends Thread {
         jobCurrentlyRunning = true;
       }
     }
-    while(jobCurrentlyRunning) {
+    while (jobCurrentlyRunning) {
       try {
         sleep(10);
-      } catch (InterruptedException e){}
+      } catch (InterruptedException e) {
+      }
     }
     myScheduler.printGannt();
   }
