@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class Scheduler {
   private ArrayList readyQ = new ArrayList();
-//  private Job currentlyRunningJob = null;
 
   public Scheduler() {
     readyQ = new ArrayList();
@@ -17,19 +16,14 @@ public class Scheduler {
   void add(Job j) {
     readyQ.add(j);
   }
-/*
-  public boolean jobRunning() {
-    return currentlyRunningJob == null;
-  }
-*/
+
   void makeRun() {
     Job currentlyRunningJob;
     System.out.println("makerun");
     if (!readyQ.isEmpty()) {
       currentlyRunningJob = (Job) readyQ.remove(0);
       currentlyRunningJob.start();
-    }/* else
-      currentlyRunningJob = null; */
+    }
   }
 
   public void printGannt() {

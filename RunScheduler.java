@@ -19,7 +19,7 @@ public class RunScheduler {
     // jobs ArrayList.
     // For testing purposes, though, I'll just hardwire a three-value list. The
     // RunScheduler that you submit should NOT have the following three lines.
-    
+
     jobs.add("1 0 300");
     jobs.add("2 100 300");
     jobs.add("3 300 300");
@@ -39,23 +39,23 @@ public class RunScheduler {
 
 class FileStreamsReadnWrite {
   public static void main(String[] args) {
-         try {
-                File stockInputFile = new File("/.txt");
-                File StockOutputFile = new File("/.txt");
+    try {
+      File stockInputFile = new File("/.txt");
+      File StockOutputFile = new File("/.txt");
 
-                FileInputStream fis = new FileInputStream(stockInputFile);
-                FileOutputStream fos = new FileOutputStream(StockOutputFile);
-                int count;
+      FileInputStream fis = new FileInputStream(stockInputFile);
+      FileOutputStream fos = new FileOutputStream(StockOutputFile);
+      int count;
 
-                while ((count = fis.read()) != -1) {
-                      fos.write(count);
-                }
-                fis.close();
-                fos.close();
-         } catch (FileNotFoundException e) {
-                System.err.println("FileStreamsReadnWrite: " + e);
-         } catch (IOException e) {
-                System.err.println("FileStreamsReadnWrite: " + e);
-         }
+      while ((count = fis.read()) != -1) {
+        fos.write(count);
+      }
+      fis.close();
+      fos.close();
+    } catch (FileNotFoundException e) {
+      System.err.println("FileStreamsReadnWrite: " + e);
+    } catch (IOException e) {
+      System.err.println("FileStreamsReadnWrite: " + e);
+    }
   }
 }

@@ -15,14 +15,14 @@ class Submittor extends Thread {
   }
 
   public void run() {
-    for (int i=0; i< jobDescriptions.size(); i++) {  
+    for (int i = 0; i < jobDescriptions.size(); i++) {
       try {
         sleep(DescriptionTokenizer.getInit(jobDescriptions.get(i)));
       } catch (InterruptedException e) {
       }
       String name = "Max";
       s.AddNewProcess(progenitor.createJob((String) jobDescriptions.get(i), s, name));
-      if(i == 0)
+      if (i == 0)
         s.interrupt();
       System.out.println("this is the desc " + jobDescriptions.get(i) + " name " + name);
     }

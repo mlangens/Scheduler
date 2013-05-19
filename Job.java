@@ -24,11 +24,6 @@ public class Job extends Thread {
     return DescriptionTokenizer.getBurst(description);
   }
 
-  // @Override
-  // public String getName() {
-  // return name;
-  // }
-
   public void run() {
     running = true;
     System.out.println("beginning of run " + name + " " + description);
