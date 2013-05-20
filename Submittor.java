@@ -20,7 +20,7 @@ class Submittor extends Thread {
         sleep(DescriptionTokenizer.getInit(jobDescriptions.get(i)));
       } catch (InterruptedException e) {
       }
-      String name = "Max";
+      String name = "Max Job " + Integer.toString(DescriptionTokenizer.getId(jobDescriptions.get(i)));
       s.AddNewProcess(progenitor.createJob((String) jobDescriptions.get(i), s, name));
       if (i == 0)
         s.interrupt();
