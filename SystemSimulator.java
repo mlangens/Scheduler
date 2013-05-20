@@ -18,7 +18,6 @@ class SystemSimulator extends Thread {
       try {
         sleep(10);
       } catch (InterruptedException e) {
-        System.out.println("runs in system sim");
         myScheduler.makeRun();
         jobCurrentlyRunning = true;
       }
@@ -41,14 +40,12 @@ class SystemSimulator extends Thread {
   }
 
   void AddNewProcess(Job createJob) {
-    System.out.println("add new process");
     myScheduler.add(createJob);
   }
 
   void Exit() {
     myScheduler.addCompletedJob((Job) Thread.currentThread());
     jobCurrentlyRunning = false;
-    System.out.println("Exit Thread " + Thread.currentThread());
   }
 
 }

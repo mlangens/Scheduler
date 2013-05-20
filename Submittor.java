@@ -24,7 +24,6 @@ class Submittor extends Thread {
       s.AddNewProcess(progenitor.createJob((String) jobDescriptions.get(i), s, name));
       if (i == 0)
         s.interrupt();
-      System.out.println("this is the desc " + jobDescriptions.get(i) + " name " + name);
     }
 
     s.noMoreJobsToSubmit();

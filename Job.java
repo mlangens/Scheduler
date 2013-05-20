@@ -43,7 +43,6 @@ public class Job extends Thread {
 
   public void run() {
     running = true;
-    System.out.println("beginning of run " + name + " " + description);
     JobTimer timer = new JobTimer(this, getBurstTime());
     timer.start();
     while (shouldRun()) {
@@ -53,7 +52,6 @@ public class Job extends Thread {
         e.printStackTrace();
       }
     }
-    System.out.println("its done mane");
     Exit();
   }
 

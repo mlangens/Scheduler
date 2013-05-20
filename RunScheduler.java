@@ -1,6 +1,9 @@
 package Scheduler;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RunScheduler {
@@ -9,10 +12,15 @@ public class RunScheduler {
     thisThread.setPriority(Thread.MAX_PRIORITY);
     SystemSimulator os = new SystemSimulator();
     ArrayList jobs = new ArrayList();
-
-    jobs.add("1 0 200");
-    jobs.add("2 100 300");
-    jobs.add("3 300 300");
+    FileHandler handler = new FileHandler();
+    try {
+      ArrayList<String> handleFile = handler.handleFile();
+      for (String string : handleFile) {
+        jobs.add(string);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     JobCreator sinecure = new JobCreator(os);
     Submittor sub = new Submittor(jobs, os, sinecure);
@@ -27,6 +35,16 @@ public class RunScheduler {
   }
 }
 
-class ListManager {
-
+class FileHandler {
+  //http://stackoverflow.com/questions/5868369/how-to-read-a-large-text-file-line-by-line-in-java
+  public ArrayList<String> handleFile() throws IOException {
+    ArrayList<String> jobList = new ArrayList<String>();    
+    BufferedReader reader = new BufferedReader(new FileReader("scheduleInput.txt"));
+    String line = "";
+    while ((line = reader.readLine()) != null) {
+      jobList.add(line);
+    }
+    reader.close();
+    return jobList;
+  }
 }

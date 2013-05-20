@@ -17,7 +17,6 @@ class MattJob extends Job {
 
     long startTime = System.currentTimeMillis();
     while (shouldRun()) { // Inherited from Job
-      System.out.println("I'm running, says " + getName() + " at " + System.currentTimeMillis());
       while (System.currentTimeMillis() == startTime) {
       }
       startTime = System.currentTimeMillis();

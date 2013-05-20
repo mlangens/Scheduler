@@ -20,7 +20,6 @@ public class Scheduler {
 
   void makeRun() {
     Job currentlyRunningJob;
-    System.out.println("makerun");
     if (!readyQ.isEmpty()) {
       currentlyRunningJob = (Job) readyQ.remove(0);
       currentlyRunningJob.start();
@@ -33,8 +32,11 @@ public class Scheduler {
 
   public void printGannt() {
     for (Job job : completedJobs) {
-      System.out.println("job id  " + job.getActualRuntime() + " job name: " + job.getJobName() + " job init: "
-          + job.getInit());
+      System.out.println("GANNT CHART:");
+      System.out.println("Time                  TimeDelta                   Job");
+      System.out.println("---------------------------------------------");
+      System.out.println(job.getInit() + "            " + job.getActualRuntime() + "         "
+          + job.getJobName());
     }
   }
 }
