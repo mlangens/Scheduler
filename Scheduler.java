@@ -31,12 +31,24 @@ public class Scheduler {
   }
 
   public void printGannt() {
+    System.out.println("GANNT CHART:");
+    System.out.println("Time         TimeDelta         Job");
+    System.out.println("---------------------------------------------");
     for (Job job : completedJobs) {
-      System.out.println("GANNT CHART:");
-      System.out.println("Time                  TimeDelta                   Job");
-      System.out.println("---------------------------------------------");
-      System.out.println(job.getInit() + "            " + job.getActualRuntime() + "         "
+      String initTime = formatInitString(job);
+      System.out.println(initTime + "            " + job.getActualRuntime() + "         "
           + job.getJobName());
     }
+  }
+
+  private String formatInitString(Job job) {
+    String initTime = "";
+    int initInt = job.getInit();
+    if(initInt == 0) {
+      initTime = String.format("%s  ", initInt); 
+    } else {
+      initTime = Integer.toString(initInt);
+    }
+    return initTime;
   }
 }
