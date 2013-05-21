@@ -32,7 +32,7 @@ public class Scheduler {
 
   public void printGannt() {
     System.out.println("GANNT CHART:");
-    System.out.println("Time         TimeDelta         Job");
+    System.out.println("Time        TimeDelta        Job");
     System.out.println("---------------------------------------------");
     for (Job job : completedJobs) {
       String initTime = formatInitString(job);
